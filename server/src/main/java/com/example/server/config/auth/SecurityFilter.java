@@ -1,6 +1,5 @@
 package com.example.server.config.auth;
 
-import com.example.server.entities.User;
 import com.example.server.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -28,7 +27,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         String token = this.recoverToken(request);
         if (token != null) {
             String username = tokenService.validateToken(token);
-            UserDetails user = userRepository.findByLogin(username);
+            UserDetails user = userRepository.findByUsername(username);
             var auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(auth);
         }

@@ -14,8 +14,8 @@ import java.time.ZoneOffset;
 
 @Service
 public class TokenProvider {
-    @Value("${security.jwt.token.secret-key}")
-    private String JWT_SECRET;
+
+    private final String JWT_SECRET = "mysecret";
 
     public String generateAccessToken(User user) {
         try {
